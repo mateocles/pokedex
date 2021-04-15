@@ -47,17 +47,28 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      items: "Pokemons/items",
-    }),
+    ...mapGetters("Pokemons", ["items", "allPokemons", "favoritePokemons"]),
     searchPokemons() {
       if (this.searchInput.length > 3) {
         return this.searchPokemon(this.items, this.searchInput);
+      }
+      if (this.allPokemons) {
+        return this.items;
+      }
+      if (this.favoritePokemons) {
+        return this.searchFavoritePokemon(this.items);
       }
       return this.items;
     },
   },
   methods: {
+    searchFavoritePokemon(arrayToSearch) {
+      return arrayToSearch.filter(function (item) {
+        if (item.favorite === true) {
+          return item;
+        }
+      });
+    },
     searchPokemon(arrayToSearch, value) {
       return arrayToSearch.filter(function (item) {
         return item.name.toUpperCase().includes(value.toUpperCase());

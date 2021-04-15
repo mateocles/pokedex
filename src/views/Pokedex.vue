@@ -19,10 +19,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      loading: "Pokemons/loading",
-      success: "Pokemons/success",
-    }),
+    ...mapGetters("Pokemons", ["loading", "success"]),
   },
   mounted() {
     this.$store.dispatch("Pokemons/getPokemons");

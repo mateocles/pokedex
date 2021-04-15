@@ -23,6 +23,7 @@ export default {
 
   methods: {
     pokedex() {
+      this.$store.dispatch("Pokemons/searchAllPokemons");
       this.$router.push({ path: "/" }).catch(() => {});
     },
   },

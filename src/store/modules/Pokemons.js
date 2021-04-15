@@ -5,6 +5,8 @@ const state = {
   items: [],
   loading: { getItems: false },
   success: { getItems: undefined },
+  allPokemons: true,
+  favoritePokemons: false,
 };
 
 const getters = {
@@ -16,6 +18,12 @@ const getters = {
   },
   success: (state) => {
     return state.success;
+  },
+  allPokemons: (state) => {
+    return state.allPokemons;
+  },
+  favoritePokemons: (state) => {
+    return state.favoritePokemons;
   },
 };
 
@@ -33,12 +41,26 @@ const actions = {
       setMessage("Error", "Ha sucedido un error en la transacción", "error");
     }
   },
+  searchAllPokemons({ commit }) {
+    commit("searchAllPokemons");
+  },
+  searchFavoritePokemons({ commit }) {
+    commit("searchFavoritePokemons");
+  },
   addFavorite({ commit }, payload) {
     commit("addFavorite", payload);
   },
 };
 
 const mutations = {
+  searchFavoritePokemons(state) {
+    state.favoritePokemons = !state.favoritePokemons;
+    state.allPokemons = !state.allPokemons;
+  },
+  searchAllPokemons(state) {
+    state.allPokemons = !state.allPokemons;
+    state.favoritePokemons = !state.favoritePokemons;
+  },
   addFavorite(state, payload) {
     state.items.find(function (item) {
       if (item.name === payload) {

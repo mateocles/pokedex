@@ -4,14 +4,16 @@
       <div class="col">
         <p class="name">{{ item.name }}</p>
       </div>
-      <div class="col start" @click="favorite(item.name)">
+      <div class="col start">
         <img
+          @click.stop="favorite(item.name)"
           v-if="item.favorite"
           src="@/assets/start-active.svg"
           class="img-start"
           alt="arrow"
         />
         <img
+          @click.stop="favorite(item.name)"
           v-if="!item.favorite"
           src="@/assets/start-disable.svg"
           class="img-start"
