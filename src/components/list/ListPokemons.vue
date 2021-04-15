@@ -6,20 +6,25 @@
           <span class="form-control-feedback">
             <img src="@/assets/lupa.svg" alt="arrow" />
           </span>
-          <input type="text" class="form-control input" placeholder="Search" />
+          <input
+            type="text"
+            class="form-control input"
+            v-model="searchInput"
+            placeholder="Search"
+          />
         </div>
       </div>
     </div>
     <div class="contend-page">
       <div class="row justify-content-md-center">
         <div class="col-6">
-          <div v-for="(data, i) in items" :key="i">
+          <div v-for="(data, i) in searchPokemons" :key="i">
             <Card :item="data" />
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
 </template>
 <script>
@@ -32,10 +37,29 @@ export default {
     Card,
     Footer,
   },
+
+  Footerdata() {
+    return {
+      searchInput: "",
+    };
+  },
   computed: {
     ...mapGetters({
       items: "Pokemons/items",
     }),
+    searchPokemons() {
+      if (this.searchInput.length > 3) {
+        return this.searchPokemon(this.items, this.searchInput);
+      }
+      return this.items;
+    },
+  },
+  methods: {
+    searchPokemon(arrayToSearch, value) {
+      return arrayToSearch.filter(function (item) {
+        return item.name.toUpperCase().includes(value.toUpperCase());
+      });
+    },
   },
 };
 </script>

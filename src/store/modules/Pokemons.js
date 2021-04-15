@@ -23,7 +23,7 @@ const actions = {
   getPokemons({ commit }) {
     try {
       commit("loading", true);
-      Api.get("pokemon?limit=1118&offset=0", async (functions) => {
+      Api.get("pokemon", async (functions) => {
         const response = await functions;
         commit("getPokemonsResponse", { response });
         commit("loading", false);
@@ -41,7 +41,6 @@ const mutations = {
     state.success.getItems = !data;
   },
   getPokemonsResponse(state, data) {
-    console.log(data.response);
     state.items = data.response.data.results;
   },
 };

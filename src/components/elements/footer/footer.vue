@@ -2,14 +2,14 @@
   <div class="contend fixed-bottom">
     <div class="row">
       <div class="col all">
-        <b-button pill variant="danger" class="button" @click="pokedex()">
+        <b-button pill variant="danger" id="all" class="button" @click="pokedex()">
           <span> <img src="@/assets/all.svg" class="icon" alt="arrow" /></span>
           All</b-button
         >
       </div>
 
       <div class="col">
-        <b-button pill variant="danger" class="button" @click="pokedex()">
+        <b-button pill variant="danger" id="fav" class="button" @click="pokedex()">
           <span>
             <img src="@/assets/favorites.svg" class="icon" alt="arrow"
           /></span>
