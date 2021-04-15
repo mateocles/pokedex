@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="row">
+    <div class="row" @click="showModal(item.name)">
       <div class="col">
         <p class="name">{{ item.name }}</p>
       </div>
@@ -36,11 +36,17 @@ export default {
     favorite(name) {
       this.addFavorite(name);
     },
+    showModal(name) {
+      this.$refs[`${name}`].show();
+    },
   },
 };
 </script>
 
 <style scoped>
+.img-back {
+  background-image: url("../../../assets/imgfont.jpg");
+}
 .start {
   text-align: end;
 }
