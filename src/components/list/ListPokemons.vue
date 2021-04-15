@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="contend-page">
+    <div v-if="searchPokemons.length > 0" class="contend-page">
       <div class="row justify-content-md-center">
         <div class="col-6">
           <div v-for="(data, i) in searchPokemons" :key="i">
@@ -25,20 +25,23 @@
       </div>
       <Footer />
     </div>
+    <div v-else class="contend-page"><Error msg="Uh-oh!" /></div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import Card from "@/components/elements/card/card.vue";
 import Footer from "@/components/elements/footer/footer.vue";
+
+import Error from "@/components/elements/error/error.vue";
 export default {
   name: "ListPokemons",
   components: {
     Card,
     Footer,
+    Error,
   },
-
-  Footerdata() {
+  data() {
     return {
       searchInput: "",
     };
@@ -66,9 +69,6 @@ export default {
 <style scoped>
 .form-group {
   padding-top: 35px;
-}
-.contend {
-  background: #f9f9f9;
 }
 .contend-page {
   padding-top: 40px;

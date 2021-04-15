@@ -33,15 +33,30 @@ const actions = {
       setMessage("Error", "Ha sucedido un error en la transacción", "error");
     }
   },
+  addFavorite({ commit }, payload) {
+    commit("addFavorite", payload);
+  },
 };
 
 const mutations = {
+  addFavorite(state, payload) {
+    state.items.find(function (item) {
+      if (item.name === payload) {
+        item.favorite = !item.favorite;
+      }
+    });
+  },
   loading(state, data) {
     state.loading.getItems = data;
     state.success.getItems = !data;
   },
   getPokemonsResponse(state, data) {
-    state.items = data.response.data.results;
+    data.response.data.results.forEach((pokemon) => {
+      state.items.push({
+        name: pokemon.name,
+        favorite: false,
+      });
+    });
   },
 };
 

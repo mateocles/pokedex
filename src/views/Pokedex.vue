@@ -39,7 +39,6 @@ export default {
 </script>
 <style scoped>
 .contend {
-  background: #f9f9f9;
   overflow-x: hidden;
 }
 </style>

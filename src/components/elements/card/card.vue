@@ -4,18 +4,36 @@
       <div class="col">
         <p class="name">{{ item.name }}</p>
       </div>
-      <div class="col start">
-        <img src="@/assets/start-disable.svg" class="img-start" alt="arrow" />
+      <div class="col start" @click="favorite(item.name)">
+        <img
+          v-if="item.favorite"
+          src="@/assets/start-active.svg"
+          class="img-start"
+          alt="arrow"
+        />
+        <img
+          v-if="!item.favorite"
+          src="@/assets/start-disable.svg"
+          class="img-start"
+          alt="arrow"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "card",
   props: {
     item: Object,
+  },
+  methods: {
+    ...mapActions("Pokemons", ["addFavorite"]),
+    favorite(name) {
+      this.addFavorite(name);
+    },
   },
 };
 </script>
