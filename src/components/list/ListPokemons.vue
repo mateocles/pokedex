@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>
     <div class="row justify-content-md-center">
       <div class="col-6">
         <div class="form-group has-search">
@@ -13,6 +14,7 @@
             placeholder="Search"
           />
         </div>
+      </div>
       </div>
     </div>
     <div v-if="searchPokemons.length > 0" class="contend-page">
